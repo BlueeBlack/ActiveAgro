@@ -99,7 +99,7 @@ const products: NewProduct[] = [
         name: "Active Cyper 10% Insecticide",
         categoryName: "Agriculture Insecticide",
         categoryKey: "insecticide",
-        image: "active-cyper-10%-insecticide.png",
+        image: "active-cyper-10-insecticide.png",
         activeIngredient: "Cypermethrin 10% EC",
         packaging: ["100 ml", "250 ml", "500 ml", "1 L"],
         description:
@@ -126,7 +126,7 @@ const products: NewProduct[] = [
         name: "Active Cyper 25% Insecticide",
         categoryName: "Agriculture Insecticide",
         categoryKey: "insecticide",
-        image: "active-cyper-25%.png",
+        image: "active-cyper-25.png",
         activeIngredient: "Cypermethrin 25% EC",
         packaging: ["50 ml", "100 ml", "250 ml", "500 ml", "1 L"],
         description:

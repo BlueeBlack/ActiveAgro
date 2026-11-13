@@ -43,7 +43,7 @@ const client = createClient({
 
 // filename in public/images  →  product slug in Sanity
 const IMAGE_MAP: Record<string, string> = {
-    "active-chloro-50%-insecticide.png": "active-chloro-50-insecticide",
+    "active-chloro-50-insecticide.png": "active-chloro-50-insecticide",
     "active-emida.png": "active-emida-systemic-insecticide",
     "active-fast.png": "active-fast-fertilizer",
     "active-hexa-pro-fungicide.png": "active-hexa-pro-systemic-fungicide",
