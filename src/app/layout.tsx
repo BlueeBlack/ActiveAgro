@@ -13,7 +13,6 @@ export const metadata: Metadata = {
   title: "Active Agro Science",
   keywords:
     "pesticides, fungicides, herbicides, agricultural products, crop protection, farming, Active Agro Science",
-  icons: { icon: "/favicon.ico" },
 };
 
 export default function RootLayout({

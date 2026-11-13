@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     Menu,
@@ -77,7 +78,7 @@ export default function Header() {
         <header
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
                 ? "bg-white py-2"
-                : "bg-white/90 backdrop-blur-md py-4"
+                : "bg-white/90 backdrop-blur-md py-3"
                 } ${isAtBottom
                     ? "shadow-[0_6px_24px_-2px_rgba(255,255,255,0.45)]"
                     : isScrolled
@@ -88,18 +89,17 @@ export default function Header() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2 group">
-                        <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-lighter rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
-                            <Leaf className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                            <h1 className="text-xl font-bold text-primary leading-tight">
-                                Active Agro Science
-                            </h1>
-                            <p className="text-[10px] text-primary-light font-medium tracking-wider uppercase -mt-0.5">
-                                Farmers Always Active
-                            </p>
-                        </div>
+                    <Link href="/" className="flex items-center group" aria-label="Active Agro Science — Home">
+                        {/* Pre-sized transparent PNG (~13KB), so served as-is rather than through the image optimizer */}
+                        <Image
+                            src="/logo.png"
+                            alt="Active Agro Science — Farmers Always Active"
+                            width={720}
+                            height={293}
+                            priority
+                            unoptimized
+                            className={`w-auto transition-all duration-300 group-hover:scale-[1.03] ${isScrolled ? "h-10" : "h-12"}`}
+                        />
                     </Link>
 
                     {/* Desktop Nav */}

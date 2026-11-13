@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
-    Leaf,
     MapPin,
     Phone,
     Mail,
@@ -19,11 +19,20 @@ import { getAllCategories, type SanityCategory } from "@/sanity/queries";
 
 export default function Footer() {
     const [categories, setCategories] = useState<SanityCategory[]>([]);
+    const [showBackToTop, setShowBackToTop] = useState(false);
 
     useEffect(() => {
         getAllCategories()
             .then(setCategories)
             .catch((err) => console.error("Failed to load categories:", err));
+    }, []);
+
+    // Only show the back-to-top button once the visitor has scrolled a bit.
+    useEffect(() => {
+        const handleScroll = () => setShowBackToTop(window.scrollY > 400);
+        handleScroll();
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -36,18 +45,15 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                     {/* Column 1: About */}
                     <div>
-                        <Link href="/" className="flex items-center gap-2 mb-4">
-                            <div className="w-9 h-9 bg-gradient-to-br from-primary-lighter to-accent rounded-lg flex items-center justify-center">
-                                <Leaf className="w-5 h-5 text-white" />
-                            </div>
-                            <div>
-                                <h3 className="text-lg font-bold text-white leading-tight">
-                                    Active Agro Science
-                                </h3>
-                                <p className="text-[9px] text-primary-lighter font-medium tracking-wider uppercase -mt-0.5">
-                                    Farmers Always Active
-                                </p>
-                            </div>
+                        <Link href="/" className="inline-flex mb-4" aria-label="Active Agro Science — Home">
+                            <Image
+                                src="/logo.png"
+                                alt="Active Agro Science — Farmers Always Active"
+                                width={720}
+                                height={293}
+                                unoptimized
+                                className="h-14 w-auto"
+                            />
                         </Link>
                         <p className="text-sm text-gray-400 leading-relaxed">
                             Leading the way in sustainable agricultural solutions since 2011.
@@ -175,8 +181,13 @@ export default function Footer() {
             {/* Back to Top */}
             <button
                 onClick={scrollToTop}
-                className="fixed bottom-6 right-6 w-11 h-11 bg-primary text-white rounded-full shadow-lg hover:bg-primary-light transition-all hover:-translate-y-1 hover:shadow-xl z-40 flex items-center justify-center"
+                className={`fixed bottom-6 right-6 w-11 h-11 bg-primary text-white rounded-full shadow-lg hover:bg-primary-light transition-all duration-300 hover:-translate-y-1 hover:shadow-xl z-40 flex items-center justify-center ${showBackToTop
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-4 pointer-events-none"
+                    }`}
                 aria-label="Back to top"
+                aria-hidden={!showBackToTop}
+                tabIndex={showBackToTop ? 0 : -1}
             >
                 <ArrowUp className="w-5 h-5" />
             </button>
