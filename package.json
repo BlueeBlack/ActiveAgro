@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "studio": "sanity dev",
+    "studio:deploy": "sanity deploy"
   },
   "dependencies": {
     "@sanity/image-url": "^2.0.3",

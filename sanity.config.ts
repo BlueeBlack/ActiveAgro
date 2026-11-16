@@ -7,7 +7,6 @@ export default defineConfig({
     title: "Active Agro Science CMS",
     projectId: "8m0swnfc",
     dataset: "production",
-    basePath: "/studio",
     plugins: [
         structureTool({
             structure: async (S, context) => {
